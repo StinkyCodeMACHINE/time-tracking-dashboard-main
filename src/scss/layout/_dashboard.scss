@@ -1,0 +1,211 @@
+@use "../util/functions" as u;
+
+.dashboard {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, 251px);
+  gap: 2rem;
+  justify-content: center;
+
+  $dfcard-br: 1rem;
+  $dfcard-padding: 2rem 1.7rem;
+  $infocard-bg-padding: 2.5rem 0 0 0;
+  $infocard-bg-br: $dfcard-br $dfcard-br 2rem 2rem;
+
+  @media (max-width: 700px) {
+    grid-template-columns: minmax(240px, 1fr);
+  }
+
+  @mixin dfcard($bg, $padding: $dfcard-padding, $br: $dfcard-br) {
+    background: $bg;
+    padding: $padding;
+    border-radius: $br;
+    background-repeat: no-repeat;
+    background-position: 90% -7%;
+    background-size: 75px;
+  }
+
+  &__options-card {
+    grid-row: span 2;
+    background-color: var(--dark-blue);
+    border-radius: $dfcard-br;
+
+    &__info {
+      @include dfcard(var(--blue));
+      padding-bottom: 5rem;
+
+      @media (max-width: 700px) {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        gap: 1rem;
+        padding-bottom: 2rem;
+      }
+
+      img {
+        width: 80px;
+        height: 80px;
+        border: 2.5px solid var(--white);
+        border-radius: 50%;
+        margin-bottom: 2rem;
+
+        @media (max-width: 700px) {
+          margin-bottom: 0;
+        }
+      }
+
+      h2 {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--pale-blue);
+      }
+
+      &__name {
+        font-size: 2.5rem;
+        color: var(--white);
+        font-weight: 300;
+
+        @media (max-width: 700px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    &__options {
+      padding: $dfcard-padding;
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+      cursor: pointer;
+
+      @media (max-width: 700px) {
+        flex-direction: row;
+        gap: 0;
+        justify-content: space-between;
+      }
+
+      div {
+        font-size: 1.2rem;
+        color: var(--desaturated-blue);
+        &.selected {
+          color: var(--white);
+        }
+
+        transition: color 200ms ease-out;
+        &:hover {
+          color: var(--white);
+        }
+      }
+    }
+  }
+
+  &__info-card {
+    &.work {
+      @include dfcard(
+        var(--work-bg) url("/assets/icon-work.svg"),
+        $infocard-bg-padding,
+        $infocard-bg-br
+      );
+    }
+
+    &.play {
+      @include dfcard(
+        var(--play-bg) url("/assets/icon-play.svg"),
+        $infocard-bg-padding,
+        $infocard-bg-br
+      );
+    }
+
+    &.study {
+      @include dfcard(
+        var(--study-bg) url("/assets/icon-study.svg"),
+        $infocard-bg-padding,
+        $infocard-bg-br
+      );
+    }
+
+    &.exercise {
+      @include dfcard(
+        var(--exercise-bg) url("/assets/icon-exercise.svg"),
+        $infocard-bg-padding,
+        $infocard-bg-br
+      );
+      background-position: 90% 0%;
+    }
+
+    &.social {
+      @include dfcard(
+        var(--social-bg) url("/assets/icon-social.svg"),
+        $infocard-bg-padding,
+        $infocard-bg-br
+      );
+      background-position: 90% -12%;
+    }
+
+    &.self-care {
+      @include dfcard(
+        var(--self-care-bg) url("/assets/icon-self-care.svg"),
+        $infocard-bg-padding,
+        $infocard-bg-br
+      );
+    }
+
+    &__info {
+      @include dfcard(var(--dark-blue));
+      height: 100%;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: filter 400ms ease-out;
+      &:hover {
+        filter: brightness(170%);
+      }
+
+      &__top-stuff {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+
+        h2 {
+          font-size: u.rem(18);
+          color: var(--white);
+          font-weight: 500;
+        }
+
+        img {
+          width: 18px;
+          height: 4px;
+          cursor: pointer;
+        }
+      }
+
+      &__bottom-stuff {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        @media (max-width: 700px) {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      &__cur-stat {
+        font-size: 3.5rem;
+        color: var(--white);
+        font-weight: 300;
+
+        @media (max-width: 700px) {
+          font-size: 2.5rem;
+        }
+      }
+
+      &__prev-stat {
+        color: var(--pale-blue);
+        font-weight: 400;
+        font-size: 0.95rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@use "../util/functions" as u;
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  font-family: "Rubik", sans-serif;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding-block: 2rem;
+  box-sizing: border-box;
+  background-color: var(--very-dark-blue);
+}
+
+#root {
+  width: 77%;
+
+  @media (max-width: 700px) {
+    width: 90%;
+  }
+}
+
+main {
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
