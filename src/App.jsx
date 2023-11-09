@@ -6,14 +6,17 @@ function App() {
     {
       name: "Daily",
       selected: false,
+      lastWhat: "Day",
     },
     {
       name: "Weekly",
       selected: true,
+      lastWhat: "Week",
     },
     {
       name: "Monthly",
       selected: false,
+      lastWhat: "Month",
     },
   ]);
 
@@ -82,7 +85,10 @@ function App() {
                     }hrs`}
                   </div>
                   <div className="dashboard__info-card__info__prev-stat">
-                    {`Last Week - ${
+                    {`Last ${
+                      options.find((option) => option.selected === true)
+                        .lastWhat
+                    } - ${
                       dataPiece.timeframes[
                         options
                           .find((option) => option.selected === true)
